@@ -13,6 +13,16 @@
     margin-top: 20px;
     text-align: right;    
     font-size: 1.4rem;
+    min-height: auto;
+}
+
+#previous {
+  min-height: 32px;
+  font-size: 1rem;
+}
+
+#current {
+  min-height: 64px;
 }
 
 .calc-buttons {
@@ -23,38 +33,38 @@
 }
 
 button {
-    height: 60px;
-    width: 60px;
-    background-color: #fff;
-    border-radius: 3px;
-    border: 1px solid #c4c4c4;
-    font-size: 2rem;
-    color: #333;
-  }
+  height: 60px;
+  width: 60px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  font-size: 1.5rem;
+  color: #333;
+}
 
-  button:hover {
-    background-color: #eaeaea;
-  }
-  
-  #clear-button {
-      color: #fff;
-      background-color: #ff3740;
-  }
+button:hover {
+  background-color: #eaeaea;
+}
 
-  #clear-button:hover {
-    background-color: #e86b70;
-  }
+#clear-button {
+  color: #fff;
+  background-color: #ff3740;
+}
 
-  #equal-button {
-    background-color: #2e86c0;
-    border-color: #337cac;
-    color: #fff;
-    height: 100%;
-    grid-area: 2 / 4 / 6 / 5;
-  }
+#clear-button:hover {
+  background-color: #e86b70;
+}
 
-  #equal-button:hover {
-    background-color: #4e9ed4;
-  }
-  
+#equal-button {
+  background-color: #2e86c0;
+  border-color: #337cac;
+  color: #fff;
+  height: 100%;
+  grid-area: 2 / 4 / 5 / 5;
+}
+
+#equal-button:hover {
+  background-color: #4e9ed4;
+}
+
   

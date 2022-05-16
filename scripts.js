@@ -1,12 +1,25 @@
 let currentOp = null
 
+const numberButtons = document.querySelectorAll('[data-number]')
 const currentOpScreen = document.getElementById('current-op-screen')
-const calcButtons = document.querySelectorAll('[data-number]')
 
-calcButtons.forEach((button) => 
-    button.addEventListener('click', () => setCurrentOp(button.textContent))
-)
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        appendNumber(button.textContent)
+        updateDiplay()
+        })
+})
 
-function setCurrentOp(number) {
-    currentOpScreen.textContent += number
+function appendNumber(number) {
+    if (currentOpScreen.textContent === "0")
+        resetScreen()
+     currentOpScreen.textContent += number
+}
+
+function updateDiplay() {
+    console.log("Updated!")
+}
+
+function resetScreen() {
+    currentOpScreen.textContent = ""
 }
