@@ -13,16 +13,16 @@
     margin-top: 20px;
     text-align: right;    
     font-size: 1.4rem;
-    min-height: auto;
-}
+    max-height: auto;
+ }
 
-#previous {
+#previous-op-screen {
   min-height: 32px;
   font-size: 1rem;
 }
 
-#current {
-  min-height: 64px;
+#current-op-screen {
+  min-height: 30px;
 }
 
 .calc-buttons {
