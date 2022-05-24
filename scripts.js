@@ -2,6 +2,7 @@ let currentOp = null
 let shouldResetScreen = false
 
 const numberButtons = document.querySelectorAll('[data-number]')
+const operatorButtons = document.querySelectorAll('[operator-button]')
 const clearButton = document.getElementById('clear-button')
 const deleteButton = document.getElementById('delete-button')
 const currentOpScreen = document.getElementById('current-op-screen')
@@ -14,6 +15,12 @@ numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         appendNumber(button.textContent)
          })
+})
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log(button.textContent)
+    })
 })
 
 function appendNumber(number) {
