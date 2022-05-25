@@ -1,3 +1,6 @@
+let firstOperand = ''
+let secondOperand = ''
+
 let currentOp = null
 let shouldResetScreen = false
 
@@ -8,38 +11,48 @@ const deleteButton = document.getElementById('delete-button')
 const currentOpScreen = document.getElementById('current-op-screen')
 const previousOpScreen = document.getElementById('previous-op-screen')
 
+//Triggers clear function on button click
 clearButton.addEventListener('click', resetScreen)
+//Triggers Delete function on button click
 deleteButton.addEventListener('click', deleteNumber)
 
-numberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        appendNumber(button.textContent)
-         })
-})
+//Triggers function to add operator to calculation
+operatorButtons.forEach((button) =>
+    button.addEventListener('click', () => setOperator(button.textContent))
+)
+//Triggers function to add a number
+numberButtons.forEach((button) =>
+    button.addEventListener('click', () => appendNumber(button.textContent))
+)
 
-operatorButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        console.log(button.textContent)
-    })
-})
+//Moves current number and the selected operator to the top
+function setOperator(operator) {
+    firstOperand = currentOpScreen.textContent
+    secondOperand = operator
+    previousOpScreen.textContent = `${firstOperand} ${secondOperand}`
+    currentOpScreen.textContent = " "
+    console.log(secondOperand)
+}
 
+//Removes the 0 and adds whatever number selected to the calculation
 function appendNumber(number) {
     if (currentOpScreen.textContent === "0" || shouldResetScreen)
         resetScreen()
      currentOpScreen.textContent += number
 }
 
-function updateDiplay() {
-    console.log("Updated!")
-}
-
+//Sets both calculations to 0
 function resetScreen() {
-        currentOpScreen.textContent = " "
-        previousOpScreen.textContent = " "
+    firstOperand = ''
+    secondOperand = ''
+    currentOpScreen.textContent = ""
+    previousOpScreen.textContent = ""
+    currentOp = null
 }
 
+//Removes most recent number from current calculation
 function deleteNumber() {
-         currentOpScreen.textContent = currentOpScreen.textContent
-        .toString()
-        .slice(0, -1)
+    currentOpScreen.textContent = currentOpScreen.textContent
+    .toString()
+    .slice(0, -1)
  }
