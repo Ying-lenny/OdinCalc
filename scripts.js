@@ -14,8 +14,10 @@ const previousOpScreen = document.getElementById('previous-op-screen')
 
 //Triggers clear function on button click
 clearButton.addEventListener('click', resetScreen)
+
 //Triggers Delete function on button click
 deleteButton.addEventListener('click', deleteNumber)
+
 //Triggers equal function on button
 equalButton.addEventListener('click', evaluate)
 
@@ -31,10 +33,10 @@ numberButtons.forEach((button) =>
 //Moves current number and the selected operator to the top
 function setOperator(operator) {
     firstOperand = currentOpScreen.textContent
-    secondOperand = operator
-    previousOpScreen.textContent = `${firstOperand} ${secondOperand}`
+    currentOp = operator
+    previousOpScreen.textContent = `${firstOperand} ${currentOp}`
     currentOpScreen.textContent = " "
-    console.log(secondOperand)
+    console.log(currentOp)
 }
 
 //Removes the 0 and adds whatever number selected to the calculation
@@ -55,7 +57,17 @@ function resetScreen() {
 
 //Starts Evaluation to see if a valid calculation was submitted
 function evaluate() {
-    console.log("Evaluated")
+    if (firstOperand != '' && secondOperand != '' && currentOpScreen != '') 
+    console.log(currentOp)
+    secondOperand = currentOpScreen.textContent
+    
+    previousOpScreen.textContent = `${firstOperand} ${currentOp} ${secondOperand}`
+
+    currentOpScreen.textContent = calculate(
+        currentOp, firstOperand, secondOperand
+    )
+
+    currentOp = null
 }
 
 //Removes most recent number from current calculation
@@ -63,4 +75,38 @@ function deleteNumber() {
     currentOpScreen.textContent = currentOpScreen.textContent
     .toString()
     .slice(0, -1)
+ }
+
+function add(a, b) {
+    return a + b
+  }
+
+function subtract(a, b) {
+    console.log("Subtraction")
+}
+
+function multiply(a, b) {
+    console.log("Multiplication")
+}
+
+function divide(a, b) {
+    console.log("Division")
+}
+
+ function calculate(operator, a, b) {
+     a = Number(a)
+     b = Number(b)
+     switch (operator) {
+        case '+':
+            return add(a, b);
+         case '-':
+            subtract(a, b);
+            break;
+        case 'x':
+            multiply(a, b);
+            break;
+        case '÷':
+            divide(a, b);
+            break;
+       }
  }
