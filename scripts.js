@@ -9,6 +9,7 @@ const operatorButtons = document.querySelectorAll('[operator-button]')
 const clearButton = document.getElementById('clear-button')
 const deleteButton = document.getElementById('delete-button')
 const equalButton = document.getElementById('equal-button')
+const pointButton = document.getElementById('point-button')
 const currentOpScreen = document.getElementById('current-op-screen')
 const previousOpScreen = document.getElementById('previous-op-screen')
 
@@ -21,6 +22,9 @@ deleteButton.addEventListener('click', deleteNumber)
 //Triggers equal function on button
 equalButton.addEventListener('click', evaluate)
 
+//Triggers function to add point to calculation
+pointButton.addEventListener('click', appendPoint)
+
 //Triggers function to add operator to calculation
 operatorButtons.forEach((button) =>
     button.addEventListener('click', () => setOperator(button.textContent))
@@ -32,6 +36,7 @@ numberButtons.forEach((button) =>
 
 //Moves current number and the selected operator to the top
 function setOperator(operator) {
+    if (currentOp != null) evaluate()
     firstOperand = currentOpScreen.textContent
     currentOp = operator
     previousOpScreen.textContent = `${firstOperand} ${currentOp}`
@@ -45,6 +50,11 @@ function appendNumber(number) {
         resetScreen()
      currentOpScreen.textContent += number
 }
+
+function appendPoint() {
+    if (currentOpScreen.textContent.includes('.')) return
+        currentOpScreen.textContent += '.'
+ }
 
 //Sets both calculations to 0
 function resetScreen() {
@@ -82,15 +92,15 @@ function add(a, b) {
   }
 
 function subtract(a, b) {
-    console.log("Subtraction")
+    return a - b
 }
 
 function multiply(a, b) {
-    console.log("Multiplication")
+    return a * b
 }
 
 function divide(a, b) {
-    console.log("Division")
+    return a / b
 }
 
  function calculate(operator, a, b) {
@@ -100,13 +110,13 @@ function divide(a, b) {
         case '+':
             return add(a, b);
          case '-':
-            subtract(a, b);
-            break;
+            return subtract(a, b);
         case 'x':
-            multiply(a, b);
-            break;
-        case '÷':
-            divide(a, b);
-            break;
-       }
+            return multiply(a, b);
+         case '÷':
+            if (b === 0) return null
+            else return divide(a, b);
+        default:
+            return null
+        }
  }
